@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Scancare</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_history">History</string>
+    <string name="title_bookmark">Bookmark</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_scancare">Welcome to ScanCare</string>
+    <string name="slogan">Find Your Healthy Skin With</string>
+    <string name="slogan2">ScanCare!</string>
+</resources>

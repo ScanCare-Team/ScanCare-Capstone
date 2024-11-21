@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_history"
         android:icon="@drawable/ic_history_white"
         android:title="@string/title_history" />
 
@@ -16,7 +16,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_bookmark"
         android:icon="@drawable/ic_bookmark_white"
         android:title="@string/title_bookmark" />
 

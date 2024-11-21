@@ -11,4 +11,23 @@
     <string name="welcome_to_scancare">Welcome to ScanCare</string>
     <string name="slogan">Find Your Healthy Skin With</string>
     <string name="slogan2">ScanCare!</string>
+    <string name="button_scan">button scan</string>
+    <string name="button_next_onboard">button_next</string>
+    <string name="button_back_onboard">button_back_onboard</string>
+    <string name="onBoard_skip">Skip</string>
+    <string name="logout">logout</string>
+    <string name="slogan3">Find Your Healthy Skin With ScanCare!!</string>
+    <string name="welcome_user_home">HI, Your Name</string>
+    <string name="sapa">How\'s your day?</string>
+    <string name="identify">Identify</string>
+    <string name="tv_btn_scan">Scan your\nIngredients skincare</string>
+    <string name="see_all">See all ►</string>
+    <string name="image_bookmark">Image Bookmark</string>
+    <string name="nama_scan">Nama Scan</string>
+    <string name="image_item_history">Image Item History</string>
+    <string name="description">Description</string>
+    <string name="back_button">Back Button</string>
+    <string name="image_ingredients">Image Ingredients</string>
+    <string name="no_title">No Title</string>
+    <string name="content_scan_fab">fab galeri dan camera</string>
 </resources>

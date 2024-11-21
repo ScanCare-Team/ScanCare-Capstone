@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.scan.ScanCareActivity">
+
+    <ImageView
+        android:id="@+id/iv_back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_back_btn"
+        android:contentDescription="@string/back_button"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_title"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:layout_marginTop="27dp"
+        app:layout_constraintStart_toEndOf="@id/iv_back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/previewImageView"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/image_ingredients"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_back_button"
+        app:srcCompat="@drawable/ic_place_holder" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/content_scan_fab"
+        android:src="@drawable/ic_add"
+        android:clickable="true"
+        android:focusable="true"
+        app:maxImageSize="35dp"
+        android:backgroundTint="@color/ijo_tua"
+        app:tint="@color/secDefault_scancare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/previewImageView"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/secDefault_scancare"
+        android:clickable="true"
+        android:contentDescription="@string/content_scan_fab"
+        android:focusable="true"
+        android:src="@drawable/ic_camera"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/fab_add"
+        app:layout_constraintTop_toBottomOf="@id/fab_add"
+        app:maxImageSize="30dp"
+        app:tint="@color/ijo_tua" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_galery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/secDefault_scancare"
+        android:clickable="true"
+        android:contentDescription="@string/content_scan_fab"
+        android:focusable="true"
+        android:src="@drawable/ic_galery"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/fab_camera"
+        app:layout_constraintTop_toBottomOf="@id/fab_camera"
+        app:maxImageSize="30dp"
+        app:tint="@color/ijo_tua" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

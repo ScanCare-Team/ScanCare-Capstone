@@ -11,4 +11,9 @@
     <color name="active_color">#135D66</color>
     <color name="inactive_color">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="text_onboarding">#455A64</color>
+    <color name="grey">#EEEDEB</color>
+    <color name="darkGrey">#758694</color>
+    <color name="secDefault_scancare">#C0D9E1</color>
+    <color name="ijo_tua">#578A9D</color>
 </resources>

@@ -14,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:gravity="top"
-        android:text="@string/bookmark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/bookmark_view"
         app:layout_constraintStart_toEndOf="@+id/bookmark_view"

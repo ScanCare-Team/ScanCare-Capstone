@@ -30,4 +30,6 @@
     <string name="image_ingredients">Image Ingredients</string>
     <string name="no_title">No Title</string>
     <string name="content_scan_fab">fab galeri dan camera</string>
+    <string name="history">History</string>
+    <string name="bookmark">Bookmark</string>
 </resources>

@@ -78,7 +78,7 @@
         android:clickable="true"
         android:contentDescription="@string/content_scan_fab"
         android:focusable="true"
-        android:src="@drawable/ic_camera"
+        android:src="@drawable/ic_camera_profile"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/fab_add"
         app:layout_constraintTop_toBottomOf="@id/fab_add"

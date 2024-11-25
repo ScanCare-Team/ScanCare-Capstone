@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -100,6 +100,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/ic_right_arrow" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -127,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="About Us"
+            android:text="@string/about_us"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 

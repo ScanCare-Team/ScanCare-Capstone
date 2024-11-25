@@ -32,4 +32,6 @@
     <string name="content_scan_fab">fab galeri dan camera</string>
     <string name="history">History</string>
     <string name="bookmark">Bookmark</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="about_us">About Us</string>
 </resources>

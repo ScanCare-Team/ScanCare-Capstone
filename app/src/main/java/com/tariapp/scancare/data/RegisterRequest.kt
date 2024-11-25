@@ -11,3 +11,11 @@ data class LoginRequest(
     val email: String,
     val password: String
 )
+
+data class EditProfileRequest(
+    val email: String,
+    val fullName: String,
+    val oldPassword: String,
+    val newPassword: String,
+    val confirmNewPassword: String
+)

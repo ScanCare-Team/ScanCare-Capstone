@@ -5,15 +5,11 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.tariapp.scancare.MainActivity
 import com.tariapp.scancare.R
 import com.tariapp.scancare.ResultState
 import com.tariapp.scancare.auth.AuthViewModel

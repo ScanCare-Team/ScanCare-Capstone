@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#77B7D0" /> <!-- Warna isi -->
+    <size
+        android:width="510dp"
+        android:height="255dp" /> <!-- Ukuran setengah lingkaran -->
+    <corners
+        android:bottomLeftRadius="255dp"
+        android:bottomRightRadius="255dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" /> <!-- Radius bagian bawah -->
+</shape>

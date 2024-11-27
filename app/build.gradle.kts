@@ -56,4 +56,7 @@ dependencies {
 
     //circleImageView
     implementation(libs.circleimageview)
+
+    //library  ML Kit
+    implementation(libs.text.recognition)
 }

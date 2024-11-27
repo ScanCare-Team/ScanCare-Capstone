@@ -32,4 +32,9 @@
     <string name="content_scan_fab">fab galeri dan camera</string>
     <string name="history">History</string>
     <string name="bookmark">Bookmark</string>
+    <string name="scan">SCAN</string>
+    <string name="save">Save</string>
+    <string name="tombol_edit_teks_deskripsi">tombol edit teks deskripsi</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="no_text_recognized">Tidak ada teks yang terdeteksi</string>
 </resources>

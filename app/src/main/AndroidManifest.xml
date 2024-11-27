@@ -15,7 +15,8 @@
         tools:targetApi="tiramisu">
         <activity
             android:name=".ui.scan.ScanCareActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".ui.onBoarding.OnBoardingActivity"
             android:exported="false" />

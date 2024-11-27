@@ -1,21 +1,29 @@
 package com.tariapp.scancare.ui.scan
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.tariapp.scancare.R
 import com.tariapp.scancare.databinding.ActivityScanCareBinding
+import com.tariapp.scancare.getImageUri
 
+@Suppress("DEPRECATION")
 class ScanCareActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityScanCareBinding
@@ -27,6 +35,7 @@ class ScanCareActivity : AppCompatActivity() {
 
     private var clicked = false
 
+    // Variabel untuk menyimpan URI gambar yang dipilih pengguna
     private var currentImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +51,7 @@ class ScanCareActivity : AppCompatActivity() {
                 onAddButtonClicked()
             }
             fabCamera.setOnClickListener {
-                Toast.makeText(this@ScanCareActivity, "FAB Camera Clicked", Toast.LENGTH_SHORT).show()
+                startCamera()
             }
             fabGalery.setOnClickListener {
                 startGallery()
@@ -51,8 +60,106 @@ class ScanCareActivity : AppCompatActivity() {
             ivBackButton.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
+            //klik pada text view untuk mengaktifkan mode edit
+            tvTitleScan.setOnClickListener {
+                tvTitleScan.visibility = View.GONE
+                edtTitleScan.visibility = View.VISIBLE
+                edtTitleScan.setText(tvTitleScan.text.toString())
+                edtTitleScan.requestFocus()
+            }
+            //simpan teks saat menekan tombol "Done" pada keyboard
+            edtTitleScan.setOnEditorActionListener{_, actionId,_ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    saveEditedTitle()
+                    true
+                }else{
+                    false
+                }
+            }
+            //simpan teks saat kehilangan fokus dari EditText
+            edtTitleScan.setOnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    saveEditedTitle()
+                }
+            }
+            ButtonScan.setOnClickListener {
+                currentImageUri?.let {
+                    analyzeImage(it)
+                } ?: run {
+                    showToast(getString(R.string.empty_image_warning))
+                }
+            }
         }
     }
+
+    private fun analyzeImage(uri: Uri) {
+        binding.progressIndicator.visibility = View.VISIBLE
+
+        val textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+        val inputImage = InputImage.fromFilePath(this, uri)
+
+        textRecognizer.process(inputImage)
+            .addOnSuccessListener { visionText: Text ->
+                val detectedText: String = visionText.text
+                if (detectedText.isNotBlank()){
+                    binding.progressIndicator.visibility = View.GONE
+                    binding.edtDeskripsi.setText(detectedText)
+                    binding.edtDeskripsi.visibility = View.VISIBLE
+                    binding.btnIdentifyDesc.visibility = View.VISIBLE
+                }else{
+                    showToast(getString(R.string.no_text_recognized))
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Jika proses gagal, sembunyikan loading dan tampilkan pesan error
+                binding.progressIndicator.visibility = View.GONE
+                showToast(exception.message.toString())
+            }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Menyimpan URI gambar saat konfigurasi berubah (misal: rotasi layar)
+        outState.putParcelable("currentImageUri", currentImageUri)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // Mengembalikan URI gambar setelah konfigurasi berubah
+        currentImageUri = savedInstanceState.getParcelable("currentImageUri")
+        showImage() // Menampilkan gambar kembali
+    }
+
+    private fun startCamera() {
+        currentImageUri = getImageUri(this) // Buat URI untuk gambar baru
+        if (this.currentImageUri != null){
+            launcherIntentCamera.launch(currentImageUri!!) //Buka kamera dgn URI
+        }else{
+            Log.e("AddStoryActivity", "Failed to create URI for camera")
+            Toast.makeText(this, "Failed to open camera", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Hasil pengambilan gambar dari kamera
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSuccess ->
+        if (isSuccess) {
+            showImage()
+        } else {
+            currentImageUri = null
+        }
+    }
+
+    private fun saveEditedTitle() {
+        binding.apply {
+            tvTitleScan.text = edtTitleScan.text.toString()
+            tvTitleScan.visibility = View.VISIBLE
+            edtTitleScan.visibility = View.GONE
+        }
+    }
+
 
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -66,7 +173,6 @@ class ScanCareActivity : AppCompatActivity() {
             showImage()
         } else {
             Toast.makeText(this, "No Media Selected", Toast.LENGTH_SHORT).show()
-//            Log.d("Photo Picker", "No media selected")
         }
     }
 
@@ -104,5 +210,8 @@ class ScanCareActivity : AppCompatActivity() {
             binding.fabCamera.visibility = View.INVISIBLE
             binding.fabGalery.visibility = View.INVISIBLE
         }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

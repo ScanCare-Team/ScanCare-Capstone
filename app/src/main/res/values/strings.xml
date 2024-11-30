@@ -34,4 +34,9 @@
     <string name="bookmark">Bookmark</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="about_us">About Us</string>
+    <string name="scan">SCAN</string>
+    <string name="save">Save</string>
+    <string name="tombol_edit_teks_deskripsi">tombol edit teks deskripsi</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="no_text_recognized">Tidak ada teks yang terdeteksi</string>
 </resources>

@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
     }
 
     buildTypes {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -59,4 +61,21 @@ dependencies {
 
     //library  ML Kit
     implementation(libs.text.recognition)
+
+    implementation(libs.androidx.datastore.preferences)
+
+    // Retrofit core library
+    implementation (libs.retrofit)
+
+    // Converter untuk parsing JSON (gunakan GSON sebagai contoh)
+    implementation (libs.converter.gson)
+
+    // (Opsional) OkHttp untuk logging (menambahkan interceptor log jaringan)
+    implementation (libs.logging.interceptor)
+
+    // Lifecycle components
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+
+    //mengubah rotasi file piksel
+    implementation(libs.androidx.exifinterface)
 }

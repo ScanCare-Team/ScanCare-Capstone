@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
             android:name=".ui.profile.AboutUsActivity"
             android:exported="false"
             android:theme="@style/Theme.Scancare"/>

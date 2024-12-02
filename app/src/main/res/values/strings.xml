@@ -39,4 +39,24 @@
     <string name="tombol_edit_teks_deskripsi">tombol edit teks deskripsi</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="no_text_recognized">Tidak ada teks yang terdeteksi</string>
+    <string name="login_to_your_account">Login to your Account</string>
+    <string name="confirm_pass">Konfirmasi Password Anda</string>
+    <string name="input_email">Masukkan Email Anda</string>
+    <string name="input_nama">Masukkan Nama Anda</string>
+    <string name="input_pasword">Masukkan Password Anda</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="Capital_login">LOGIN</string>
+    <string name="Capital_sign_up">SIGN UP</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="name">Name</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="login">Login</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="empty">This field should not be empty</string>
+    <string name="logo_splash">logo splash</string>
 </resources>

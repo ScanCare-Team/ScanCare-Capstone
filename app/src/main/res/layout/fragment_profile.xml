@@ -83,10 +83,9 @@
             android:src="@drawable/ic_edit_profile"/>
 
         <TextView
+            android:id="@+id/tv_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/edit_profile"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -127,8 +126,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/about_us"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -168,7 +165,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/lexend"
             android:text="Logout"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />

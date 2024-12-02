@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <View
         android:id="@+id/bgV_login"
@@ -73,11 +73,11 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Capital_login"
+        android:text="@string/Capital_sign_up"
         android:textSize="35sp"
         android:textColor="?attr/colorPrimary"
         android:fontFamily="@font/vanilla_whale"
-        android:layout_marginTop="35sp"
+        android:layout_marginTop="20dp"
         android:alpha="0"
         tools:alpha="100"
         app:layout_constraintTop_toBottomOf="@id/bgV_login"
@@ -89,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/freestyle_script"
-        android:text="@string/login_to_your_account"
+        android:text="@string/create_new_account"
         android:textSize="35sp"
         android:textColor="?attr/colorPrimary"
         android:alpha="0"
@@ -99,17 +99,56 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_email"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/email"
+        android:layout_marginTop="10dp"
+        android:text="@string/name"
         android:textColor="@color/black"
         android:alpha="0"
         tools:alpha="100"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_sub_login"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:boxBackgroundMode="outline"
+        app:startIconDrawable="@drawable/ic_nama"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.tariapp.scancare.customView.NamaEditText
+            android:id="@+id/name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/email"
+        android:textColor="@color/black"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_name"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -127,9 +166,9 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.tariapp.scancare.customView.EmailEditText
-            android:id="@+id/email_edit_text"
+            android:id="@+id/email_edit"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:fontFamily="@font/lexend"
@@ -142,7 +181,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/password"
         android:textColor="@color/black"
         android:alpha="0"
@@ -166,9 +205,9 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.tariapp.scancare.customView.PasswordEditText
-            android:id="@+id/pass_edit_text"
+            android:id="@+id/pass_edit"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:ems="10"
             android:inputType="textPassword"
             android:fontFamily="@font/lexend"
@@ -176,14 +215,54 @@
             android:backgroundTint="@color/transparent"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/tv_confirm_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/confirm_password"
+        android:textColor="@color/black"
+        android:alpha="0"
+        tools:alpha="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_password"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/confirm_input_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:alpha="0"
+        tools:alpha="100"
+        app:endIconMode="password_toggle"
+        app:boxBackgroundMode="outline"
+        app:startIconDrawable="@drawable/ic_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/tv_confirm_pass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.tariapp.scancare.customView.ConfirmPasswordEditText
+            android:id="@+id/confirm_edit"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_regist"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/Capital_login"
+        android:layout_marginTop="20dp"
+        android:text="@string/Capital_sign_up"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -192,39 +271,39 @@
         android:backgroundTint="?attr/colorPrimary"
         android:alpha="0"
         tools:alpha="100"
-        app:layout_constraintTop_toBottomOf="@+id/input_password"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_input_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_ask_login"
+        android:id="@+id/tv_ask_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="125dp"
-        android:text="@string/already_have_an_account"
-        android:textSize="15sp"
+        android:layout_marginEnd="45dp"
+        android:text="@string/don_t_have_an_account"
+        android:textSize="16sp"
         android:fontFamily="@font/lexend"
         android:alpha="0"
         tools:alpha="100"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"
+        app:layout_constraintTop_toBottomOf="@id/btn_regist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/link_to_signup"
+        android:id="@+id/link_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_an_account"
-        android:textSize="15sp"
+        android:text="@string/login"
+        android:textSize="16sp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend"
         android:textColor="?attr/colorPrimary"
         android:alpha="0"
         tools:alpha="100"
-        app:layout_constraintStart_toEndOf="@id/tv_ask_login"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"/>
+        app:layout_constraintStart_toEndOf="@id/tv_ask_signup"
+        app:layout_constraintTop_toBottomOf="@id/btn_regist"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -235,5 +314,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

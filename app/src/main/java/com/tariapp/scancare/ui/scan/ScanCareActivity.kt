@@ -40,7 +40,7 @@ class ScanCareActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         supportActionBar?.hide()
 
         binding = ActivityScanCareBinding.inflate(layoutInflater)

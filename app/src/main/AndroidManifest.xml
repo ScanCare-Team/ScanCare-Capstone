@@ -22,15 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            android:name=".ui.profile.AboutUsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Scancare"/>
+        <activity
+            android:name=".ui.profile.EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Scancare"/>
         <activity
             android:name=".ui.scan.ScanCareActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.onBoarding.OnBoardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.profile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"

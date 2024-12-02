@@ -86,8 +86,6 @@
             android:id="@+id/tv_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lexend"
-            android:text="Edit Profile"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -101,6 +99,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/ic_right_arrow" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -127,8 +126,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lexend"
-            android:text="About Us"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 

@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.tariapp.scancare.databinding.FragmentProfileBinding
-import com.tariapp.scancare.ui.history.HistoryViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -23,7 +20,14 @@ class ProfileFragment : Fragment() {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        binding.arrowEditProfile.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.arrowAboutUs.setOnClickListener {
+            val intent = Intent(requireContext(), AboutUsActivity::class.java)
+            startActivity(intent)
+        }
         return root
     }
 

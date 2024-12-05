@@ -66,6 +66,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_logout"
             android:layout_width="53dp"
             android:layout_height="53dp"
             android:src="@drawable/ic_logout"

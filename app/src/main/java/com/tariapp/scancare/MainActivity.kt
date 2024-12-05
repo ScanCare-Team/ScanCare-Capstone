@@ -2,9 +2,12 @@ package com.tariapp.scancare
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,16 +15,26 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tariapp.scancare.auth.AuthViewModel
+import com.tariapp.scancare.data.ViewModelFactory
+import com.tariapp.scancare.data.pref.UserPreference
+import com.tariapp.scancare.data.pref.dataStore
 import com.tariapp.scancare.databinding.ActivityMainBinding
 import com.tariapp.scancare.ui.scan.ScanCareActivity
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<AuthViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        val userPreference = UserPreference.getInstance(dataStore)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -38,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ScanCareActivity::class.java)
             startActivity(intent)
         }
+
+
 
         val navView: BottomNavigationView = binding.navView
 
@@ -59,4 +74,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
     }
+
+
 }

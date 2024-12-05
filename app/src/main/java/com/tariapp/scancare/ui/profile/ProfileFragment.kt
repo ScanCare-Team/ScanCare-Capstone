@@ -31,6 +31,24 @@ class ProfileFragment : Fragment() {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            btnEditProfile.setOnClickListener {
+                val intent = Intent(activity, EditProfileActivity::class.java)
+                startActivity(intent)
+            }
+            tvEditProfile.setOnClickListener {
+                val intent = Intent(activity, EditProfileActivity::class.java)
+                startActivity(intent)
+            }
+            arrowEditProfile.setOnClickListener {
+                val intent = Intent(activity, EditProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -4,8 +4,11 @@ import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import com.tariapp.scancare.ResultState
 import com.tariapp.scancare.api.ApiService
+import com.tariapp.scancare.api.response.EditProfileResponse
 import com.tariapp.scancare.api.response.LoginResponse
+import com.tariapp.scancare.api.response.ProfileResponse
 import com.tariapp.scancare.api.response.RegisterResponse
+import com.tariapp.scancare.data.EditProfileRequest
 import com.tariapp.scancare.data.LoginRequest
 import com.tariapp.scancare.data.RegisterRequest
 import com.tariapp.scancare.data.pref.UserModel
@@ -17,6 +20,35 @@ class AuthRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference
 ){
+    suspend fun getUserProfile(email: String) : ProfileResponse {
+        return apiService.getUserProfile(email)
+    }
+
+    fun editProfile(
+        email: String,
+        fullName: String,
+        oldPassword: String,
+        newPassword: String,
+        confirmNewPassword: String
+    ) = liveData {
+        emit(ResultState.Loading)
+        try {
+            // Bungkus parameter dalam objek EditProfileRequest
+            val request = EditProfileRequest(email, fullName, oldPassword, newPassword, confirmNewPassword)
+            val response = apiService.editProfile(request)
+            emit(ResultState.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, EditProfileResponse::class.java)
+            emit(ResultState.Error(errorResponse.message ?: "Terjadi kesalahan"))
+        } catch (e: IOException) {
+            emit(ResultState.Error("Network error. Please check your connection."))
+        } catch (e: Exception) {
+            emit(ResultState.Error("An unexpected error occurred: ${e.message}"))
+        }
+    }
+
+
     fun register (name: String, email: String, password: String, confirmPassword: String) = liveData {
         emit(ResultState.Loading)
         try {

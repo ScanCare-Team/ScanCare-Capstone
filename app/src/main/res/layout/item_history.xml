@@ -44,21 +44,27 @@
             tools:text="@string/nama_scan"/>
 
         <TextView
-            android:id="@+id/tv_EventFinishDeskripsi"
+            android:id="@+id/tv_status"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:maxLines="5"
-            android:justificationMode="inter_word"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/img_itemHistory"
             app:layout_constraintEnd_toEndOf="@id/tv_namaHistory"
             app:layout_constraintStart_toStartOf="@+id/tv_namaHistory"
             app:layout_constraintTop_toBottomOf="@+id/tv_namaHistory"
             app:layout_constraintVertical_bias="0.0"
-            tools:text="@string/description"
+            tools:text="@string/status"
             tools:ignore="UnusedAttribute" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="18dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_garbage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

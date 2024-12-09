@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import java.io.ByteArrayOutputStream
@@ -66,6 +67,23 @@ fun getImageUriForPreQ(context: Context): Uri {
         imageFile
     )
 }
+
+//fun getFileFromUri(context: Context, uri: Uri): File? {
+//    val contentResolver = context.contentResolver
+//    val file = File(context.cacheDir, "image.jpg")
+//
+//    try {
+//        contentResolver.openInputStream(uri)?.use { inputStream ->
+//            FileOutputStream(file).use { outputStream ->
+//                inputStream.copyTo(outputStream)
+//            }
+//        }
+//    } catch (e: Exception) {
+//        e.printStackTrace()
+//    }
+//
+//    return file.takeIf { it.exists() }
+//}
 
 /**
  * Membuat file sementara untuk menyimpan gambar.

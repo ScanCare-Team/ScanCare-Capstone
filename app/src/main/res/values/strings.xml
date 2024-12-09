@@ -6,7 +6,6 @@
     <string name="title_history">History</string>
     <string name="title_bookmark">Bookmark</string>
     <string name="title_profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_to_scancare">Welcome to ScanCare</string>
     <string name="slogan">Find Your Healthy Skin With</string>
@@ -17,7 +16,7 @@
     <string name="onBoard_skip">Skip</string>
     <string name="logout">logout</string>
     <string name="slogan3">Find Your Healthy Skin With ScanCare!!</string>
-    <string name="welcome_user_home">HI, Your Name</string>
+    <string name="welcome_user_home">HI,</string>
     <string name="sapa">How\'s your day?</string>
     <string name="identify">Identify</string>
     <string name="tv_btn_scan">Scan your\nIngredients skincare</string>
@@ -58,4 +57,18 @@
     <string name="nama_lengkap">Nama Lengkap</string>
     <string name="empty">This field should not be empty</string>
     <string name="logo_splash">logo splash</string>
+    <string name="your_email">Your Email</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="update">Update</string>
+    <string name="berbahaya">BERBAHAYA</string>
+    <string name="ocr_failed_status">ocr gagal\n</string>
+    <string name="bahan_berbahaya_ditemukan">Bahan Berbahaya Ditemukan</string>
+    <string name="bahan_berbahaya_tidak_ditemukan">Bahan Berbahaya Tidak Ditemukan</string>
+    <string name="teksAnalisis">Analisis:</string>
+    <string name="hasil_analisis">Hasil Analisis</string>
+    <string name="bahan_berbahaya">Bahan Berbahaya:</string>
+    <string name="list_bahan">List Bahan</string>
+    <string name="predict_skin">Predict Skin:</string>
+    <string name="status">Status</string>
 </resources>

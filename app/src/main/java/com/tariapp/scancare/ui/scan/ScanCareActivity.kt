@@ -1,27 +1,38 @@
 package com.tariapp.scancare.ui.scan
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.Text
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.tariapp.scancare.MainViewModel
 import com.tariapp.scancare.R
+import com.tariapp.scancare.api.ApiConfig
+import com.tariapp.scancare.api.response.HazardousMaterialsItem
+import com.tariapp.scancare.api.response.PredictRequest
+import com.tariapp.scancare.data.ViewModelFactory
 import com.tariapp.scancare.databinding.ActivityScanCareBinding
 import com.tariapp.scancare.getImageUri
+import com.tariapp.scancare.ui.result.ResultActivity
+import com.yalantis.ucrop.UCrop
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 @Suppress("DEPRECATION")
 class ScanCareActivity : AppCompatActivity() {
@@ -37,14 +48,33 @@ class ScanCareActivity : AppCompatActivity() {
 
     // Variabel untuk menyimpan URI gambar yang dipilih pengguna
     private var currentImageUri: Uri? = null
+    private lateinit var viewModel: MainViewModel
+    private var previousImageUri: Uri? = null
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityScanCareBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 //        enableEdgeToEdge()
         supportActionBar?.hide()
 
-        binding = ActivityScanCareBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // Menginisialisasi ViewModel menggunakan ViewModelFactory
+        val factory = ViewModelFactory.getInstance(application)
+        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+
+        // Cek apakah ada URI yang tersimpan di ViewModel
+        viewModel.croppedImageUri?.let {
+            showImage() // Menampilkan gambar hasil cropping jika ada
+            binding.ButtonScan.isEnabled = true
+        } ?: viewModel.currentImageUri?.let {
+            showImage() // Menampilkan gambar asli jika cropping belum dilakukan
+            binding.ButtonScan.isEnabled = true
+        } ?: run {
+            binding.ButtonScan.isEnabled = false // Nonaktifkan tombol jika tidak ada gambar
+        }
+
+
 
         binding.apply {
             fabAdd.setOnClickListener {
@@ -83,39 +113,172 @@ class ScanCareActivity : AppCompatActivity() {
                 }
             }
             ButtonScan.setOnClickListener {
-                currentImageUri?.let {
-                    analyzeImage(it)
-                } ?: run {
-                    showToast(getString(R.string.empty_image_warning))
+                currentImageUri?.let { uri ->
+                    uploadImageToOCR(uri)
+                } ?: showToast(getString(R.string.empty_image_warning))
+            }
+            btnIdentifyDesc.setOnClickListener {
+                val ocrText = binding.edtDeskripsi.text.toString().trim()
+                if (ocrText.isNotBlank()) {
+                    analyzeTextForHazard(ocrText)
+                } else {
+                    showToast("Teks kosong, tidak dapat dianalisis.")
                 }
             }
         }
     }
 
-    private fun analyzeImage(uri: Uri) {
-        binding.progressIndicator.visibility = View.VISIBLE
+    private suspend fun fetchHazardousMaterials(text: String): List<HazardousMaterialsItem> {
+        val apiService = ApiConfig.getPredictApiService()
+        val response = apiService.predict(PredictRequest(text))
+        Log.d("FetchHazardous", "Response hazardousMaterials: ${response.hazardousMaterials}")
+        // Validasi respons untuk memastikan tidak null
+        return response.hazardousMaterials ?: emptyList()
+    }
+    private suspend fun fetchPredictedSkinTypes(ocrText: String): List<String> {
+        val apiService = ApiConfig.getPredictApiService()
+        val response = apiService.predict(PredictRequest(ocrText))
+        return response.predictedSkinTypes ?: emptyList()
+    }
 
-        val textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
-        val inputImage = InputImage.fromFilePath(this, uri)
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun analyzeTextForHazard(ocrText: String) {
+        lifecycleScope.launch {
+            binding.progressIndicator.visibility = View.VISIBLE // Tampilkan indikator pemrosesan
+            try {
+                // Panggil API untuk mendapatkan data bahan berbahaya
+                val hazardousDetails = fetchHazardousMaterials(ocrText) // List<HazardousMaterialsItem> dari API
 
-        textRecognizer.process(inputImage)
-            .addOnSuccessListener { visionText: Text ->
-                val detectedText: String = visionText.text
-                if (detectedText.isNotBlank()){
-                    binding.progressIndicator.visibility = View.GONE
-                    binding.edtDeskripsi.setText(detectedText)
-                    binding.edtDeskripsi.visibility = View.VISIBLE
-                    binding.btnIdentifyDesc.visibility = View.VISIBLE
-                }else{
-                    showToast(getString(R.string.no_text_recognized))
-
+                // Tentukan status berdasarkan hasil analisis
+                val status = if (hazardousDetails.isNotEmpty()) {
+                    "Bahan Berbahaya Ditemukan"
+                } else {
+                    "Tidak Ada Bahan Berbahaya"
                 }
-            }
-            .addOnFailureListener { exception ->
-                // Jika proses gagal, sembunyikan loading dan tampilkan pesan error
+
+                // Ambil daftar predicted skin types jika tidak ada bahan berbahaya
+                val predictedSkinTypes = if (hazardousDetails.isEmpty()) {
+                    fetchPredictedSkinTypes(ocrText) // List<String> dari API
+                } else {
+                    null
+                }
+
+                // Tampilkan hasil analisis
+                showHazardStatus(hazardousDetails, predictedSkinTypes)
+
+            } catch (e: Exception) {
+                // Tangani error dan tampilkan pesan ke pengguna
+                Log.e("AnalyzeError", "Error analyzing text: ${e.message}")
+                showToast("Gagal menganalisis teks: ${e.message}")
+            } finally {
+                // Sembunyikan indikator pemrosesan
                 binding.progressIndicator.visibility = View.GONE
-                showToast(exception.message.toString())
             }
+        }
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun showHazardStatus(
+        analisisBahan: List<HazardousMaterialsItem>,
+        predictedSkinTypes: List<String>?
+    ) {
+        binding.statusBahan.apply {
+            visibility = View.VISIBLE // Tampilkan tombol status
+
+            val status = if (analisisBahan.isNotEmpty())
+                "Bahan Berbahaya Ditemukan"
+            else
+                "Bahan Berbahaya tidak ditemukan"
+
+            Log.d("HazardStatus", "Status: $status") // Logging status untuk debugging
+
+            // Set teks dan ikon berdasarkan hasil analisis
+            if (analisisBahan.isNotEmpty()) {
+                // Jika bahan berbahaya ditemukan
+                text = context.getString(R.string.bahan_berbahaya_ditemukan)
+                setTextColor(resources.getColor(R.color.red, theme))
+                setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warning, 0, R.drawable.ic_right_arrow, 0)
+            } else {
+                // Jika bahan berbahaya tidak ditemukan
+                text = context.getString(R.string.bahan_berbahaya_tidak_ditemukan)
+                setTextColor(resources.getColor(R.color.ijo_tua, theme))
+                setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, R.drawable.ic_right_arrow, 0)
+            }
+
+            setOnClickListener {
+                val intent = Intent(context, ResultActivity::class.java)
+
+                // Kirim gambar analisis
+                currentImageUri?.let { uri ->
+                    intent.putExtra("imageUri", uri.toString()) // URI dikonversi ke String untuk disimpan dalam intent
+                }
+
+                // Kirim status
+                intent.putExtra("status", status)
+                // Kirim daftar predicted skin types (jika tidak null)
+                predictedSkinTypes?.let { skinTypes ->
+                    intent.putStringArrayListExtra("predictedSkinTypes", ArrayList(skinTypes))
+                }
+
+                intent.putParcelableArrayListExtra("analisisBahan", ArrayList(analisisBahan))
+                context.startActivity(intent)
+                finish()
+            }
+        }
+    }
+
+    private  fun uploadImageToOCR(imageUri: Uri) {
+        lifecycleScope.launch {
+            binding.progressIndicator.visibility = View.VISIBLE
+            try {
+                // Convert URI to File
+                val file = getFileFromUri(imageUri)
+                    ?: throw IllegalArgumentException("Failed to get file from URI")
+
+                // Prepare multipart request
+                val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                val imagePart = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+                // API Call
+                val apiService = ApiConfig.getOCRApiService()
+                val response = withContext(Dispatchers.IO) {
+                    apiService.ocr(imagePart)
+                }
+
+                // Handle response
+                if (response.isSuccessful) {
+                    val ocrResponse = response.body()
+                    if (!ocrResponse?.text.isNullOrBlank()) {
+                        binding.edtDeskripsi.setText(ocrResponse?.text)
+                        binding.edtDeskripsi.visibility = View.VISIBLE
+                        binding.btnIdentifyDesc.visibility = View.VISIBLE
+                    } else {
+                        showToast(getString(R.string.no_text_recognized))
+                    }
+                }
+            } catch (e: java.net.SocketTimeoutException) {
+                showToast("Timeout occurred. Please try again later.")
+            } catch (e: Exception) {
+                showToast("Error occurred: ${e.message}")
+            } finally {
+                binding.progressIndicator.visibility = View.GONE
+            }
+        }
+    }
+    private fun getFileFromUri(uri: Uri): File? {
+        // Convert URI to File
+        return try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val file = File(cacheDir, "temp_image.jpg")
+            file.outputStream().use { outputStream ->
+                inputStream?.copyTo(outputStream)
+            }
+            file
+        } catch (e: Exception) {
+            Log.e("FileError", "Error converting URI to file", e)
+            null
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -147,6 +310,7 @@ class ScanCareActivity : AppCompatActivity() {
     ) { isSuccess ->
         if (isSuccess) {
             showImage()
+            startCropActivity(uri = currentImageUri!!)
         } else {
             currentImageUri = null
         }
@@ -170,16 +334,71 @@ class ScanCareActivity : AppCompatActivity() {
     ){ uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
-            showImage()
+            startCropActivity(uri)
         } else {
-            Toast.makeText(this, "No Media Selected", Toast.LENGTH_SHORT).show()
+            currentImageUri?.let {
+                showImage() // Tampilkan gambar sebelumnya
+                showToast("Selection canceled, showing previous image.")
+            } ?: showToast("No image selected and no previous image available.")
         }
     }
 
+    private fun startCropActivity(uri: Uri) {
+        previousImageUri = currentImageUri // Simpan URI sebelumnya
+        val destinationUri = Uri.fromFile(File(cacheDir, "croppedImage.jpg"))
+
+        val options = UCrop.Options()
+        options.setFreeStyleCropEnabled(true) // Memungkinkan cropping bebas
+        options.setToolbarTitle("Crop Image") // Judul toolbar
+
+        UCrop.of(uri, destinationUri)
+            .withOptions(options)
+            .start(this)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == UCrop.REQUEST_CROP) {
+            when (resultCode) {
+                RESULT_OK -> {
+                    val croppedUri = UCrop.getOutput(data!!)
+                    if (croppedUri != null) {
+                        currentImageUri = croppedUri
+                        showImage()
+                        binding.ButtonScan.isEnabled = true
+                    }
+                }
+                RESULT_CANCELED -> {
+                    if (currentImageUri != null) {
+                        showImage()
+                        Toast.makeText(this, "Cropping canceled, showing previous image.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Cropping canceled and no previous image available.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                UCrop.RESULT_ERROR -> {
+                    val cropError = UCrop.getError(data!!)
+                    cropError?.let { Log.e("UCrop Error", it.message.toString()) }
+                    Toast.makeText(this, "Cropping failed: ${cropError?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+
     private fun showImage() {
+//        val imageUri = viewModel.croppedImageUri ?: currentImageUri
+//        imageUri?.let {
+//            Log.d("Image URI", "showImage: $it")
+//            binding.previewImageView.setImageURI(null)
+//            binding.previewImageView.setImageURI(it)  // Tetapkan URI gambar baru
+//            binding.previewImageView.invalidate()     // Paksa ImageView untuk menggambar ulang
+//        } ?: Log.e("Image URI", "No image URI available to display")
         currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
             binding.previewImageView.setImageURI(it)
+        } ?: run {
+            binding.previewImageView.setImageDrawable(null)
         }
     }
 

@@ -61,4 +61,14 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="update">Update</string>
+    <string name="berbahaya">BERBAHAYA</string>
+    <string name="ocr_failed_status">ocr gagal\n</string>
+    <string name="bahan_berbahaya_ditemukan">Bahan Berbahaya Ditemukan</string>
+    <string name="bahan_berbahaya_tidak_ditemukan">Bahan Berbahaya Tidak Ditemukan</string>
+    <string name="teksAnalisis">Analisis:</string>
+    <string name="hasil_analisis">Hasil Analisis</string>
+    <string name="bahan_berbahaya">Bahan Berbahaya:</string>
+    <string name="list_bahan">List Bahan</string>
+    <string name="predict_skin">Predict Skin:</string>
+    <string name="status">Status</string>
 </resources>

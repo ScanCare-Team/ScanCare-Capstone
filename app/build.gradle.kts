@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -16,10 +18,18 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
+        buildConfigField("String", "BASE_URL_OCR", "\"https://api-scancare-model-ml2-173910592123.asia-southeast2.run.app/\"")
+
     }
 
     buildTypes {
+//        debug {
+//            buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
+//            buildConfigField("String", "BASE_URL_OCR", "\"https://api-scancare-model-ml2-173910592123.asia-southeast2.run.app/\"")
+//        }
         release {
+//            buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
+//            buildConfigField("String", "BASE_URL_OCR", "\"https://api-scancare-model-ml2-173910592123.asia-southeast2.run.app/\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -78,4 +88,17 @@ dependencies {
 
     //mengubah rotasi file piksel
     implementation(libs.androidx.exifinterface)
+
+    implementation (libs.ucrop)
+
+    //room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.glide)
+
+
+    implementation (libs.kotlinx.coroutines.android)
+
+
 }

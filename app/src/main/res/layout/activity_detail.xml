@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.detailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/iv_back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_back_btn"
+            android:contentDescription="@string/back_button"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_title_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_title"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:textColor="@color/darkGrey"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/lexend"
+            app:layout_constraintStart_toEndOf="@id/iv_back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <EditText
+            android:id="@+id/edt_title_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:autofillHints="name"
+            android:fontFamily="@font/lexend"
+            android:gravity="center_horizontal"
+            android:inputType="text"
+            android:textColor="@color/darkGrey"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_back_button"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_scan"
+            app:layout_constraintStart_toStartOf="@+id/tv_title_scan"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/previewImageView"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/image_ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_back_button"
+            app:srcCompat="@drawable/ic_place_holder" />
+
+        <Button
+            android:id="@+id/status_bahan"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:backgroundTint="?attr/colorOnSecondary"
+            android:text="@string/berbahaya"
+            android:textColor="@color/default_scancare"
+            android:textStyle="bold"
+            android:textAlignment="viewStart"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/previewImageView"/>
+
+        <TextView
+            android:id="@+id/tv_predicted_skin_types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/predict_skin"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/status_bahan"/>
+
+        <TextView
+            android:id="@+id/list_predicted_skin_types"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hasil_analisis"
+            android:textSize="18sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_predicted_skin_types"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_hasil_analisis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bahan_berbahaya"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/list_predicted_skin_types"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/listBahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list_bahan"
+            android:textSize="18sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_hasil_analisis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_analisis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teksAnalisis"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listBahan"/>
+
+        <TextView
+            android:id="@+id/hasil_analisis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hasil_analisis"
+            android:textSize="18sp"
+            android:fontFamily="@font/lexend"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_analisis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

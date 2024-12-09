@@ -169,5 +169,21 @@
             app:layout_constraintTop_toBottomOf="@id/edt_deskripsi"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <Button
+            android:id="@+id/status_bahan"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:backgroundTint="?attr/colorOnSecondary"
+            android:text="@string/berbahaya"
+            android:textColor="@color/default_scancare"
+            android:textStyle="bold"
+            android:textAlignment="viewStart"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_identify_desc"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

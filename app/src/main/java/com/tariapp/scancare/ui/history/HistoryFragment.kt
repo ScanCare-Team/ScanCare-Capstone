@@ -17,15 +17,11 @@ import com.tariapp.scancare.data.ScancareEntity
 import com.tariapp.scancare.data.ViewModelFactory
 import com.tariapp.scancare.databinding.FragmentHistoryBinding
 import com.tariapp.scancare.ui.detail.detailActivity
-import com.tariapp.scancare.ui.result.ResultActivity
-import java.io.File
 
 class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var historyAdapter: HistoryAdapter
 
@@ -119,7 +115,6 @@ class HistoryFragment : Fragment() {
         }
         startActivity(intent)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

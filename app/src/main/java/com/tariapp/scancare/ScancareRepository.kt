@@ -18,23 +18,11 @@ class ScancareRepository(application: Application){
 
     }
 
-    fun insert(event: ScancareEntity) {
-        executorService.execute { scancareDao.insert(event) }
-    }
-
     fun delete(event: ScancareEntity) {
         executorService.execute { scancareDao.delete(event) }
     }
 
     fun getAllScancare(): LiveData<List<ScancareEntity>> {
         return scancareDao.getAllScancare()
-    }
-
-    fun getHistoryById(id: String): LiveData<ScancareEntity> {
-        return scancareDao.getScanById(id)
-    }
-
-    fun insertScan(scancare: ScancareEntity) {
-        executorService.execute { scancareDao.insertScan(scancare) }
     }
 }

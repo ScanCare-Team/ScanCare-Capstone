@@ -14,7 +14,7 @@
     <string name="button_next_onboard">button_next</string>
     <string name="button_back_onboard">button_back_onboard</string>
     <string name="onBoard_skip">Skip</string>
-    <string name="logout">logout</string>
+    <string name="logout">Logout</string>
     <string name="slogan3">Find Your Healthy Skin With ScanCare!!</string>
     <string name="welcome_user_home">HI,</string>
     <string name="sapa">How\'s your day?</string>
@@ -71,4 +71,9 @@
     <string name="list_bahan">List Bahan</string>
     <string name="predict_skin">Predict Skin:</string>
     <string name="status">Status</string>
+    <string name="button_favorite">Button Favorite</string>
+    <string name="fitur_belum_tersedia">Fitur Belum Tersedia</string>
+    <string name="icon_logout">icon logout</string>
+    <string name="icon_about_us">icon about us</string>
+    <string name="iconn_edit_profile">iconn edit profile</string>
 </resources>

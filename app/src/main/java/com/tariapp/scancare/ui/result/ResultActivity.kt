@@ -1,4 +1,4 @@
-@file:Suppress("DEPRECATION", "NAME_SHADOWING")
+@file:Suppress("DEPRECATION")
 
 package com.tariapp.scancare.ui.result
 
@@ -14,8 +14,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.tariapp.scancare.R
 import com.tariapp.scancare.ScanViewModel
 import com.tariapp.scancare.api.response.HazardousMaterialsItem
@@ -35,30 +33,22 @@ class ResultActivity : AppCompatActivity() {
         enableEdgeToEdge()
         supportActionBar?.hide()
 
-        // Initialize View Binding
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize ViewModel
         scanViewModel = ViewModelProvider(this).get(ScanViewModel::class.java)
 
         setupUI()
         populateData()
     }
-
-    /**
-     * Setup UI listeners and interactions
-     */
     private fun setupUI() {
         binding.apply {
             ivBackButton.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
-            // Activate edit mode when clicking on the title
             tvTitleScan.setOnClickListener {
                 enableEditMode()
             }
 
-            // Save title on "Done" action from the keyboard
             edtTitleScan.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     saveEditedTitle()
@@ -68,7 +58,6 @@ class ResultActivity : AppCompatActivity() {
                 }
             }
 
-            // Save title and update the database when losing focus
             edtTitleScan.setOnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus && currentTitleName != edtTitleScan.text.toString()) {
                     saveEditedTitle()
@@ -77,10 +66,6 @@ class ResultActivity : AppCompatActivity() {
             }
         }
     }
-
-    /**
-     * Populate the UI with data received from the intent
-     */
     @RequiresApi(Build.VERSION_CODES.M)
     private fun populateData() {
         val imageUri = intent.getStringExtra("imageUri") ?: ""
@@ -88,35 +73,22 @@ class ResultActivity : AppCompatActivity() {
         val scanName = intent.getStringExtra("scanName") ?: "Nama Scan"
         val hazardousDetails =
             intent.getParcelableArrayListExtra<HazardousMaterialsItem>("analisisBahan")?: emptyList()
-//        val hazardousMaterials =
-//            intent.getParcelableArrayListExtra<HazardousMaterialsItem>("hazardousMaterials") ?: emptyList()
         val predictedSkinTypes =
             intent.getStringArrayListExtra("predictedSkinTypes")
 
-//        val hazardousDetailsJson = Gson().toJson(hazardousDetails)
-//        val hazardousMaterialsJson = Gson().toJson(hazardousMaterials)
-
-        // Set initial scan name
         currentTitleName = scanName
         binding.tvTitleScan.text = currentTitleName
 
-        // Display image
         binding.previewImageView.setImageURI(Uri.parse(imageUri))
 
-        // Display hazardous status
         displayStatus(status)
 
-        // Populate hazardous materials and skin types
         if (hazardousDetails.isNullOrEmpty()) {
             displayNoHazardousMaterials(predictedSkinTypes)
         } else {
             displayHazardousMaterials(hazardousDetails)
         }
     }
-
-    /**
-     * Update hazardous status and icon based on the status
-     */
     @RequiresApi(Build.VERSION_CODES.M)
     private fun displayStatus(status: String) {
         binding.apply {
@@ -131,9 +103,6 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Display predicted skin types and hide hazardous materials section if none are found
-     */
     private fun displayNoHazardousMaterials(predictedSkinTypes: List<String>?) {
         binding.apply {
             progressBar.visibility = View.GONE
@@ -153,23 +122,9 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Display hazardous materials and analysis results
-     */
     private fun displayHazardousMaterials(
         hazardousDetails: List<HazardousMaterialsItem>
     ) {
-//        val hazardousDetails: List<HazardousMaterialsItem> = try {
-//            Gson().fromJson(hazardousDetailsJson, object : TypeToken<List<HazardousMaterialsItem>>() {}.type)
-//        } catch (e: Exception) {
-//            emptyList()
-//        }
-//
-//        val hazardousMaterials: List<HazardousMaterialsItem> = try {
-//            Gson().fromJson(hazardousMaterialsJson, object : TypeToken<List<HazardousMaterialsItem>>() {}.type)
-//        } catch (e: Exception) {
-//            emptyList()
-//        }
         binding.apply {
             progressBar.visibility = View.GONE
             tvAnalisis.visibility = View.VISIBLE
@@ -186,10 +141,6 @@ class ResultActivity : AppCompatActivity() {
             tvPredictedSkinTypes.visibility = View.GONE
         }
     }
-
-    /**
-     * Enable title edit mode
-     */
     private fun enableEditMode() {
         binding.apply {
             tvTitleScan.visibility = View.GONE
@@ -198,10 +149,6 @@ class ResultActivity : AppCompatActivity() {
             edtTitleScan.requestFocus()
         }
     }
-
-    /**
-     * Save the edited title
-     */
     private fun saveEditedTitle() {
         binding.apply {
             val newTitle = edtTitleScan.text.toString()
@@ -211,10 +158,6 @@ class ResultActivity : AppCompatActivity() {
             currentTitleName = newTitle
         }
     }
-
-    /**
-     * Save the scan to the database
-     */
     private fun saveScanToDatabase() {
         val drawable = binding.previewImageView.drawable
         if (drawable == null) {
@@ -241,20 +184,8 @@ class ResultActivity : AppCompatActivity() {
             analyses = analyses,
             hazardousMaterials = hazardousMaterials,
             predictedSkinTypes = predictedSkinTypes
-//            imageUri = imageUri.toString(),
-//            status = intent.getStringExtra("status") ?: "",
-////            hazardousMaterials = intent.getParcelableArrayListExtra<HazardousMaterialsItem>("hazardousMaterials") ?: emptyList(),
-//            hazardousMaterials = hazardousMaterialsJson,
-//            predictedSkinTypes = intent.getStringArrayListExtra("predictedSkinTypes") ?: emptyList(),
-////            hazardousDetails = intent.getParcelableArrayListExtra<HazardousMaterialsItem>("hazardousDetails") ?: emptyList(),
-//            hazardousDetails = hazardousDetailsJson,
-//            scanName = currentTitleName
         )
     }
-
-    /**
-     * Generate a unique URI for the image
-     */
     private fun generateUniqueUri(context: Context, image: Bitmap): Uri {
         val fileName = "image_${System.currentTimeMillis()}.jpg"
         val file = File(context.cacheDir, fileName)
@@ -262,8 +193,6 @@ class ResultActivity : AppCompatActivity() {
         FileOutputStream(file).use { outputStream ->
             image.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         }
-
-        // Gunakan `FileProvider` untuk menghasilkan URI yang kompatibel dengan Android
         return Uri.fromFile(file)
     }
 }

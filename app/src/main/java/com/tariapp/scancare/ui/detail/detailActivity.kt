@@ -6,8 +6,6 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.tariapp.scancare.R
 import com.tariapp.scancare.databinding.ActivityDetailBinding
 
@@ -38,26 +36,10 @@ class detailActivity : AppCompatActivity() {
 
         // Bind data to UI
         bindDataToUI(scanName, status, imageUri, hazardousMaterials, analyses, predictedSkinTypes)
+
     }
 
-    private fun parseJsonToList(jsonString: String?): List<String>? {
-        return if (!jsonString.isNullOrEmpty()) {
-            try {
-                // Parse the JSON string into a List<String>
-                Gson().fromJson(jsonString, object : TypeToken<List<String>>() {}.type)
-            } catch (e: Exception) {
-                // Return an empty list if parsing fails
-                emptyList()
-            }
-        } else {
-            // Return an empty list if the string is null or empty
-            emptyList()
-        }
-    }
 
-    /**
-     * Bind the retrieved data to the UI components
-     */
     private fun bindDataToUI(
         scanName: String,
         status: String,
@@ -94,8 +76,10 @@ class detailActivity : AppCompatActivity() {
                 tvPredictedSkinTypes.visibility = View.GONE
                 listPredictedSkinTypes.visibility = View.GONE
 
-                listBahan.text = hazardousMaterials?.joinToString("\n") { "• $it" } ?: "Bahan tidak ditemukan"
-                hasilAnalisis.text = analyses?.joinToString("\n") { "• $it" } ?: "Analisis tidak ditemukan"
+                listBahan.text =
+                    hazardousMaterials?.joinToString("\n") { "• $it" } ?: "Bahan tidak ditemukan"
+                hasilAnalisis.text =
+                    analyses?.joinToString("\n") { "• $it" } ?: "Analisis tidak ditemukan"
             } else {
                 // Show predicted skin types
                 tvAnalisis.visibility = View.GONE
@@ -105,7 +89,8 @@ class detailActivity : AppCompatActivity() {
                 tvPredictedSkinTypes.visibility = View.VISIBLE
                 listPredictedSkinTypes.visibility = View.VISIBLE
 
-                listPredictedSkinTypes.text = predictedSkinTypes?.joinToString("\n") { "• $it" } ?: "Jenis kulit tidak tersedia"
+                listPredictedSkinTypes.text = predictedSkinTypes?.joinToString("\n") { "• $it" }
+                    ?: "Jenis kulit tidak tersedia"
             }
 
             // Back button action

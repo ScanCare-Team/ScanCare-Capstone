@@ -1,7 +1,6 @@
 package com.tariapp.scancare.api.response
 
 import android.os.Parcelable
-import androidx.versionedparcelable.ParcelField
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 

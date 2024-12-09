@@ -46,9 +46,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.onBoarding.OnBoardingActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.Scancare" />

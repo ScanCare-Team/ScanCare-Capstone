@@ -84,6 +84,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
+            android:contentDescription="@string/iconn_edit_profile"
             android:src="@drawable/ic_edit_profile"/>
 
         <TextView
@@ -91,6 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_profile"
+            android:fontFamily="@font/lexend"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -126,12 +128,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
+            android:contentDescription="@string/icon_about_us"
             android:src="@drawable/ic_about_us"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_us"
+            android:fontFamily="@font/lexend"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -166,13 +170,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
+            android:contentDescription="@string/icon_logout"
             android:src="@drawable/ic_logout"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/lexend"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
     </LinearLayout>

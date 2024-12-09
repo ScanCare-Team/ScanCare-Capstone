@@ -74,8 +74,6 @@ class ScanCareActivity : AppCompatActivity() {
             binding.ButtonScan.isEnabled = false // Nonaktifkan tombol jika tidak ada gambar
         }
 
-
-
         binding.apply {
             fabAdd.setOnClickListener {
                 onAddButtonClicked()
@@ -133,12 +131,12 @@ class ScanCareActivity : AppCompatActivity() {
         val response = apiService.predict(PredictRequest(text))
         Log.d("FetchHazardous", "Response hazardousMaterials: ${response.hazardousMaterials}")
         // Validasi respons untuk memastikan tidak null
-        return response.hazardousMaterials ?: emptyList()
+        return response.hazardousMaterials
     }
     private suspend fun fetchPredictedSkinTypes(ocrText: String): List<String> {
         val apiService = ApiConfig.getPredictApiService()
         val response = apiService.predict(PredictRequest(ocrText))
-        return response.predictedSkinTypes ?: emptyList()
+        return response.predictedSkinTypes
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -148,13 +146,6 @@ class ScanCareActivity : AppCompatActivity() {
             try {
                 // Panggil API untuk mendapatkan data bahan berbahaya
                 val hazardousDetails = fetchHazardousMaterials(ocrText) // List<HazardousMaterialsItem> dari API
-
-                // Tentukan status berdasarkan hasil analisis
-                val status = if (hazardousDetails.isNotEmpty()) {
-                    "Bahan Berbahaya Ditemukan"
-                } else {
-                    "Tidak Ada Bahan Berbahaya"
-                }
 
                 // Ambil daftar predicted skin types jika tidak ada bahan berbahaya
                 val predictedSkinTypes = if (hazardousDetails.isEmpty()) {

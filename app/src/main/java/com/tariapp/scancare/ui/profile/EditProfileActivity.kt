@@ -19,6 +19,7 @@ class EditProfileActivity : AppCompatActivity() {
         // Inisialisasi View Binding
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.btnBackEdt.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()

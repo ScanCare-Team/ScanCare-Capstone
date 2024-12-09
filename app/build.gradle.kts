@@ -97,7 +97,6 @@ dependencies {
 
     implementation(libs.glide)
 
-
     implementation (libs.kotlinx.coroutines.android)
 
 

@@ -20,14 +20,18 @@ abstract class ScanDatabase: RoomDatabase() {
         @JvmStatic
         fun getDatabase(context: Context): ScanDatabase{
             return INSTANCE ?: synchronized(this){
+
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ScanDatabase::class.java,
                     "Scancare_db"
-                ).build()
+                )
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
+
+
 }

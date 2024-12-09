@@ -5,14 +5,10 @@ import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tariapp.scancare.data.ScancareEntity
 import com.tariapp.scancare.databinding.ItemHistoryBinding
-import java.text.NumberFormat
 
 class HistoryAdapter(
     private val deleteClick: (ScancareEntity) -> Unit,

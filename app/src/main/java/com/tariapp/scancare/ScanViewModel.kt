@@ -9,7 +9,6 @@ import com.tariapp.scancare.data.room.ScanDatabase
 import com.tariapp.scancare.data.room.ScancareDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 class ScanViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -38,8 +37,4 @@ class ScanViewModel(application: Application) : AndroidViewModel(application) {
             scancareDao.insertScan(scanData)
         }
     }
-
-//    fun getAllScans(): LiveData<List<ScancareEntity>> {
-//        return scancareDao.getAllScancare() // Pastikan repository memiliki fungsi ini
-//    }
 }

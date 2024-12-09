@@ -26,130 +26,127 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/edit_profile"
-        android:textSize="28sp"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:textColor="@color/darkGrey"
+        android:fontFamily="@font/lexend"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back_edt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_back_edt" />
 
-    <EditText
-        android:id="@+id/edt_name"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_name_layout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_edt"
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="Full name"
-        android:inputType="textPersonName"
-        android:imeOptions="actionNext"
-        android:textSize="18sp"
-        android:maxLength="50"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
+        android:layout_marginEnd="32dp">
+
+
+        <com.tariapp.scancare.customView.NamaEditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"
+            android:textColorHint="@color/transparent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_email_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/your_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_edt" />
-
-
-    <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edt_name_layout"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="Email Address"
-        android:textSize="18sp"
-        android:inputType="textEmailAddress"
-        android:imeOptions="actionNext"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
+        android:layout_marginEnd="32dp">
+        <com.tariapp.scancare.customView.EmailEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"
+            android:textColorHint="@color/transparent"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_old_pw_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/old_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
-
-    <EditText
-        android:id="@+id/edt_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edt_email_layout"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="No. Handphone"
-        android:textSize="18sp"
-        android:inputType="number"
-        android:imeOptions="actionNext"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
+        android:layout_marginEnd="32dp">
+        <com.tariapp.scancare.customView.PasswordEditText
+            android:id="@+id/edt_old_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"
+            android:textColorHint="@color/transparent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_new_pw_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/new_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
-
-    <EditText
-        android:id="@+id/edt_old_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edt_old_pw_layout"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="Old Password"
-        android:textSize="18sp"
-        android:imeOptions="actionNext"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
+        android:layout_marginEnd="32dp">
+
+        <com.tariapp.scancare.customView.ConfirmPasswordEditText
+            android:id="@+id/edt_new_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"
+            android:textColorHint="@color/transparent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cfr_pw_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_number" />
-
-    <EditText
-        android:id="@+id/edt_new_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/edt_new_pw_layout"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="New Password"
-        android:textSize="18sp"
-        android:imeOptions="actionNext"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_old_pw" />
+        android:layout_marginEnd="32dp">
 
-    <EditText
-        android:id="@+id/cfr_pw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_edit_text"
-        android:padding="12dp"
-        android:hint="Confirm New Password"
-        android:textSize="18sp"
-        android:imeOptions="actionNext"
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_new_pw"/>
+        <com.tariapp.scancare.customView.ConfirmPassword
+            android:id="@+id/cfr_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:backgroundTint="@color/transparent"
+            android:textColorHint="@color/transparent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btn_update_profile"
@@ -157,10 +154,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
-        android:text="Update"
+        android:text="@string/update"
         android:textColor="@color/white"
         android:padding="12dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cfr_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/cfr_pw_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

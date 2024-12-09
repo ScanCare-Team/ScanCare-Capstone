@@ -15,6 +15,5 @@ class EmailEditText @JvmOverloads constructor(
         super.onDraw(canvas)
         hint = context.getString(R.string.input_email)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-
     }
 }

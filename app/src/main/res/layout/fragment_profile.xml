@@ -45,7 +45,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:text="Name"
+        android:textStyle="bold"
+        android:textColor="@color/darkGrey"
+        android:fontFamily="@font/lexend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_user_profile"
@@ -55,11 +57,13 @@
         android:id="@+id/user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nama123@email.com"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/darkGrey"
+        android:fontFamily="@font/lexend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name"
-        android:textSize="16sp"/>
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <LinearLayout
         android:id="@+id/btn_edit_profile"
@@ -86,6 +90,7 @@
             android:id="@+id/tv_edit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/edit_profile"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -94,7 +99,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <Button
+        <View
             android:id="@+id/arrow_edit_profile"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -126,6 +131,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/about_us"
             android:textColor="#6C8BA5"
             android:textSize="16sp" />
 
@@ -134,7 +140,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <Button
+        <View
             android:id="@+id/arrow_about_us"
             android:layout_width="48dp"
             android:layout_height="48dp"

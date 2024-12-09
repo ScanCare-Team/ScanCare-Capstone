@@ -27,6 +27,12 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(MainViewModel::class.java) ->{
                 MainViewModel(mApplication)as T
             }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(authRepository) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(authRepository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

@@ -10,9 +10,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.tariapp.scancare.MainActivity
 import com.tariapp.scancare.R
 import com.tariapp.scancare.ResultState
@@ -20,9 +17,6 @@ import com.tariapp.scancare.auth.AuthViewModel
 import com.tariapp.scancare.data.ViewModelFactory
 import com.tariapp.scancare.ui.register.RegisterActivity
 import com.tariapp.scancare.databinding.ActivityLoginBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 

@@ -87,11 +87,6 @@ class AuthRepository private constructor(
         }
     }
 
-    suspend fun logout() {
-        // Menghapus data pengguna (misalnya, token) dari DataStore
-        userPreference.logout() // Pastikan fungsi logout() di UserPreference bekerja dengan benar
-    }
-
     companion object {
         @Volatile
         private var instance: AuthRepository? = null

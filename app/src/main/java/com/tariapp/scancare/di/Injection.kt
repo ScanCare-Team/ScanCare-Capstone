@@ -1,5 +1,6 @@
 package com.tariapp.scancare.di
 
+import android.app.Application
 import android.content.Context
 import com.tariapp.scancare.api.ApiConfig
 import com.tariapp.scancare.auth.AuthRepository
@@ -15,5 +16,10 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val apiService = ApiConfig.getApiService()
         return AuthRepository.getInstance(apiService, pref)
+    }
+
+    // Fungsi untuk menyediakan instance Application
+    fun provideApplication(context: Context): Application {
+        return context.applicationContext as Application
     }
 }

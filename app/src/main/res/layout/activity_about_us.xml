@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:text="@string/about_us"
         android:textSize="28sp"
+        android:fontFamily="@font/lexend"
         app:layout_constraintBottom_toBottomOf="@+id/btn_back_abt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

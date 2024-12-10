@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.tariapp.scancare.ui.profile
 
 import android.content.Intent

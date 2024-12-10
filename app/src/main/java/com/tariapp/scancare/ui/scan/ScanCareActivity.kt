@@ -131,38 +131,45 @@ class ScanCareActivity : AppCompatActivity() {
         val response = apiService.predict(PredictRequest(text))
         Log.d("FetchHazardous", "Response hazardousMaterials: ${response.hazardousMaterials}")
         // Validasi respons untuk memastikan tidak null
-        return response.hazardousMaterials
+        return response.hazardousMaterials ?: emptyList()
     }
     private suspend fun fetchPredictedSkinTypes(ocrText: String): List<String> {
+//        val apiService = ApiConfig.getPredictApiService()
+//        val response = apiService.predict(PredictRequest(ocrText))
+//        return response.predictedSkinTypes
         val apiService = ApiConfig.getPredictApiService()
         val response = apiService.predict(PredictRequest(ocrText))
-        return response.predictedSkinTypes
+        Log.d("FetchSkinTypes", "Predicted skin types: ${response.predictedSkinTypes}")
+        // Validasi respons agar tidak null atau kosong
+        return response.predictedSkinTypes ?: emptyList()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun analyzeTextForHazard(ocrText: String) {
         lifecycleScope.launch {
-            binding.progressIndicator.visibility = View.VISIBLE // Tampilkan indikator pemrosesan
+            binding.progressIndicator.visibility = View.VISIBLE
             try {
-                // Panggil API untuk mendapatkan data bahan berbahaya
-                val hazardousDetails = fetchHazardousMaterials(ocrText) // List<HazardousMaterialsItem> dari API
+                Log.d("AnalyzeText", "Mulai menganalisis teks: $ocrText")
 
-                // Ambil daftar predicted skin types jika tidak ada bahan berbahaya
+                // Ambil data bahan berbahaya
+                val hazardousDetails = fetchHazardousMaterials(ocrText)
+                Log.d("AnalyzeText", "Bahan berbahaya ditemukan: $hazardousDetails")
+
+                // Ambil predicted skin types jika tidak ada bahan berbahaya
                 val predictedSkinTypes = if (hazardousDetails.isEmpty()) {
-                    fetchPredictedSkinTypes(ocrText) // List<String> dari API
+                    Log.d("AnalyzeText", "Tidak ada bahan berbahaya. Mulai analisis skin types.")
+                    fetchPredictedSkinTypes(ocrText)
                 } else {
+                    Log.d("AnalyzeText", "Tidak memproses predicted skin types karena bahan berbahaya ditemukan.")
                     null
                 }
 
-                // Tampilkan hasil analisis
+                // Tampilkan hasil
                 showHazardStatus(hazardousDetails, predictedSkinTypes)
-
             } catch (e: Exception) {
-                // Tangani error dan tampilkan pesan ke pengguna
-                Log.e("AnalyzeError", "Error analyzing text: ${e.message}")
+                Log.e("AnalyzeTextError", "Kesalahan saat menganalisis teks: ${e.message}")
                 showToast("Gagal menganalisis teks: ${e.message}")
             } finally {
-                // Sembunyikan indikator pemrosesan
                 binding.progressIndicator.visibility = View.GONE
             }
         }
@@ -190,8 +197,11 @@ class ScanCareActivity : AppCompatActivity() {
                 text = context.getString(R.string.bahan_berbahaya_ditemukan)
                 setTextColor(resources.getColor(R.color.red, theme))
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warning, 0, R.drawable.ic_right_arrow, 0)
+            } else if (predictedSkinTypes != null && predictedSkinTypes.isNotEmpty()) {
+                text = "Prediksi Skin Types: ${predictedSkinTypes.joinToString(", ")}"
+                setTextColor(resources.getColor(R.color.ijo_tua, theme))
+                setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, R.drawable.ic_right_arrow, 0)
             } else {
-                // Jika bahan berbahaya tidak ditemukan
                 text = context.getString(R.string.bahan_berbahaya_tidak_ditemukan)
                 setTextColor(resources.getColor(R.color.ijo_tua, theme))
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, R.drawable.ic_right_arrow, 0)
@@ -304,6 +314,7 @@ class ScanCareActivity : AppCompatActivity() {
             startCropActivity(uri = currentImageUri!!)
         } else {
             currentImageUri = null
+            showToast("Camera capture failed.")
         }
     }
 
@@ -325,6 +336,7 @@ class ScanCareActivity : AppCompatActivity() {
     ){ uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
+            showImage() // Update preview dengan gambar baru
             startCropActivity(uri)
         } else {
             currentImageUri?.let {
@@ -379,17 +391,14 @@ class ScanCareActivity : AppCompatActivity() {
 
 
     private fun showImage() {
-//        val imageUri = viewModel.croppedImageUri ?: currentImageUri
-//        imageUri?.let {
-//            Log.d("Image URI", "showImage: $it")
-//            binding.previewImageView.setImageURI(null)
-//            binding.previewImageView.setImageURI(it)  // Tetapkan URI gambar baru
-//            binding.previewImageView.invalidate()     // Paksa ImageView untuk menggambar ulang
-//        } ?: Log.e("Image URI", "No image URI available to display")
         currentImageUri?.let {
-            binding.previewImageView.setImageURI(it)
+            Log.d("Image URI", "showImage: $it")
+            binding.previewImageView.setImageURI(null) // Reset URI sebelumnya
+            binding.previewImageView.setImageURI(it)  // Tetapkan URI gambar baru
+            binding.previewImageView.invalidate()     // Paksa ImageView menggambar ulang
         } ?: run {
-            binding.previewImageView.setImageDrawable(null)
+            Log.e("Image URI", "No image URI available to display")
+            binding.previewImageView.setImageDrawable(null) // Hapus gambar jika URI null
         }
     }
 

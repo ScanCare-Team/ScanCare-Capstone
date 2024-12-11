@@ -15,8 +15,7 @@ The source code for the Scancare Android app, written in Kotlin, was created to 
             <li> <B>Profile</B>, Displays basic information about the user's profile. </li>
             <li> <B>Edit Profile</B>, Provides users with the ability to update information on their profile.</li>
             <li> <B>Predict Skin Type</B>,  Estimate skin type recommendations for skincare products based on scanned data if there are no harmful ingredients. </li>
-            <li> <B>History</B>, Stores the history of skincare ingredients or products that have been scanned by previous users. History will be saved if you have **entered the scan name and click Done** on the keyboard.</li>
-            
+            <li> <B>History</B>, Stores the history of skincare ingredients or products that have been scanned by previous users. History will be saved if you have <B>entered the scan name and click Done</B> on the keyboard.</li>  
         </ul>
     </li> 
 </ul>

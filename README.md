@@ -2,6 +2,9 @@
 
 The source code for the Scancare Android app, written in Kotlin, was created to complete the Bangkit Capstone Project
 
+<img src="![1](https://github.com/user-attachments/assets/fa6e51cc-96e4-4da6-97ce-35619541c3e5)">
+<img src="![2](https://github.com/user-attachments/assets/7311ab56-9fd6-4acf-b6e7-888f27a3ae73)">
+
 <ul> 
     <li><B>Features</B>
         <ul>

@@ -16,10 +16,8 @@
     <string name="identify">Identify</string>
     <string name="tv_btn_scan">Scan your\nIngredients skincare</string>
     <string name="see_all">Lihat ►</string>
-    <string name="image_bookmark">Foto Bookmark</string>
     <string name="nama_scan">Nama Scan</string>
     <string name="image_item_history">Gambar Item Riwayat</string>
-    <string name="description">Deskripsi</string>
     <string name="back_button">Tombol Kembali</string>
     <string name="image_ingredients">Gambar Bahan</string>
     <string name="no_title">Tidak ada judul</string>
@@ -29,8 +27,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="about_us">Tentang Kami</string>
     <string name="scan">SCAN</string>
-    <string name="save">Simpan</string>
-    <string name="tombol_edit_teks_deskripsi">tombol edit teks deskripsi</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
     <string name="no_text_recognized">Tidak ada teks yang terdeteksi</string>
     <string name="login_to_your_account">Masuk ke Akun Anda</string>
@@ -49,7 +45,6 @@
     <string name="login">Masuk</string>
     <string name="already_have_an_account">Sudah punya akun?</string>
     <string name="create_an_account">Buat Akun</string>
-    <string name="nama_lengkap">Nama Lengkap</string>
     <string name="empty"> Ini tidak boleh kosong</string>
     <string name="logo_splash">logo splash</string>
     <string name="your_email">Email mu</string>
@@ -57,14 +52,12 @@
     <string name="new_password">Kata Sandi Baru</string>
     <string name="update">Update</string>
     <string name="berbahaya">BERBAHAYA</string>
-    <string name="ocr_failed_status">ocr gagal\n</string>
     <string name="teksAnalisis">Analisis:</string>
     <string name="hasil_analisis">Hasil Analisis</string>
     <string name="bahan_berbahaya">Bahan Berbahaya:</string>
     <string name="list_bahan">List Bahan</string>
     <string name="predict_skin">Predict Skin:</string>
     <string name="status">Status</string>
-    <string name="button_favorite">Button Favorite</string>
     <string name="fitur_belum_tersedia">Fitur Belum Tersedia</string>
     <string name="icon_logout">icon logout</string>
     <string name="icon_about_us">icon about us</string>
@@ -73,4 +66,7 @@
     <string name="language">Bahasa</string>
     <string name="bahan_berbahaya_ditemukan">Bahan Berbahaya Ditemukan</string>
     <string name="bahan_berbahaya_tidak_ditemukan">No Hazardous Materials Found\n</string>
+    <string name="logo_scancare">Logo Scancare</string>
+    <string name="ikon_scan">ikon scan</string>
+    <string name="ikon_hapus">Ikon Hapus</string>
 </resources>

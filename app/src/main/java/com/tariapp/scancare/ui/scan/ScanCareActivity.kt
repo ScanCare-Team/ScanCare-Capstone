@@ -1,5 +1,6 @@
 package com.tariapp.scancare.ui.scan
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -131,7 +132,7 @@ class ScanCareActivity : AppCompatActivity() {
         val response = apiService.predict(PredictRequest(text))
         Log.d("FetchHazardous", "Response hazardousMaterials: ${response.hazardousMaterials}")
         // Validasi respons untuk memastikan tidak null
-        return response.hazardousMaterials ?: emptyList()
+        return response.hazardousMaterials
     }
     private suspend fun fetchPredictedSkinTypes(ocrText: String): List<String> {
 //        val apiService = ApiConfig.getPredictApiService()
@@ -141,7 +142,7 @@ class ScanCareActivity : AppCompatActivity() {
         val response = apiService.predict(PredictRequest(ocrText))
         Log.d("FetchSkinTypes", "Predicted skin types: ${response.predictedSkinTypes}")
         // Validasi respons agar tidak null atau kosong
-        return response.predictedSkinTypes ?: emptyList()
+        return response.predictedSkinTypes
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -176,6 +177,7 @@ class ScanCareActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.M)
     private fun showHazardStatus(
         analisisBahan: List<HazardousMaterialsItem>,
@@ -197,7 +199,7 @@ class ScanCareActivity : AppCompatActivity() {
                 text = context.getString(R.string.bahan_berbahaya_ditemukan)
                 setTextColor(resources.getColor(R.color.red, theme))
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warning, 0, R.drawable.ic_right_arrow, 0)
-            } else if (predictedSkinTypes != null && predictedSkinTypes.isNotEmpty()) {
+            } else if (!predictedSkinTypes.isNullOrEmpty()) {
                 text = "Prediksi Skin Types: ${predictedSkinTypes.joinToString(", ")}"
                 setTextColor(resources.getColor(R.color.ijo_tua, theme))
                 setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, R.drawable.ic_right_arrow, 0)

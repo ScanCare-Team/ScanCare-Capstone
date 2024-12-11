@@ -36,7 +36,7 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scanViewModel = ViewModelProvider(this).get(ScanViewModel::class.java)
+        scanViewModel = ViewModelProvider(this)[ScanViewModel::class.java]
 
         setupUI()
         populateData()
@@ -83,7 +83,7 @@ class ResultActivity : AppCompatActivity() {
 
         displayStatus(status)
 
-        if (hazardousDetails.isNullOrEmpty()) {
+        if (hazardousDetails.isEmpty()) {
             displayNoHazardousMaterials(predictedSkinTypes)
         } else {
             displayHazardousMaterials(hazardousDetails)

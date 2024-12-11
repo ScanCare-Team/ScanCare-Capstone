@@ -20,6 +20,7 @@
         android:id="@+id/iv_logo_login"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:contentDescription="@string/logo_scancare"
         android:src="@drawable/logo_no_bg"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"

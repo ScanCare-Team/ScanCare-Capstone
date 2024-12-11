@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?attr/colorOnSecondary"
     tools:context=".ui.splash.SplashActivity">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:contentDescription="@string/logo_splash"
-        android:src="@drawable/logo_scancare"
+        android:src="@drawable/logo_no_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

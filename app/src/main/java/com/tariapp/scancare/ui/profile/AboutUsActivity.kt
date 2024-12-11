@@ -15,6 +15,8 @@ class AboutUsActivity : AppCompatActivity() {
         binding = ActivityAboutUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         // Menggunakan View Binding untuk menemukan tombol
         binding.btnBackAbt.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()

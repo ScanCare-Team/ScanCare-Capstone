@@ -147,6 +147,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
+                        android:contentDescription="@string/ikon_scan"
                         android:src="@drawable/scan_fab"
                         app:tint="@color/ijo_tua" />
 

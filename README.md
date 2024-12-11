@@ -28,7 +28,7 @@ The source code for the Scancare Android app, written in Kotlin, was created to 
         <li><a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a></li>
         <li><a href="https://square.github.io/okhttp/" target="_blank">Ok Http 3</a></li>
         <li><a href="https://developer.android.com/topic/libraries/architecture/datastore" target="_blank">Data Store</a></li>
-        <li<a href="https://github.com/bumptech/glide" target="_blank">Data Store</a></li>
+        <li><a href="https://github.com/bumptech/glide" target="_blank">Glide</a></li>
     </ul>
 </ul>
   

@@ -1,4 +1,4 @@
-# Mobile APP Documentation
+# Scancare Mobile APP Documentation
 
-Login
-Register
+The source code for the Scancare Android app, written in Kotlin, was created to complete the Bangkit Capstone Project
+

@@ -2,9 +2,15 @@
 
 The source code for the Scancare Android app, written in Kotlin, was created to complete the Bangkit Capstone Project
 
-• **Features**  
-    ✧ **Splash Screen**, Displays a splash screen page with the app logo before entering the login page.  
-    ✧ **Login**, Give users access to log in to the app by entering the user's email and password.  
+<ul> 
+    <li>**Features** 
+        <ul>
+            <li> ✧ <B>Splash Screen</B>, Displays a splash screen page with the app logo before entering the login page. </li>
+            <li> ✧ <B>Login</B>, Give users access to log in to the app by entering the user's email and password.   </li>
+        </ul>
+    </li> 
+   
+   
     ✧ **Sign Up**, Allows users to create new accounts independently to access the app.  
     ✧ **Home**, The main page that will be displayed after the user successfully logs in to the app. This main page features a history feature, a button to go to the scan page and a logout button.  
     ✧ **Scan Skincare Ingredients**, A feature designed to scan the ingredients of the skincare product that the user wants to check.  
@@ -14,6 +20,6 @@ The source code for the Scancare Android app, written in Kotlin, was created to 
     ✧ **Edit Profile**, Provides users with the ability to update information on their profile.  
     ✧ **Predict Skin Type**, Estimate skin type recommendations for skincare products based on scanned data if there are no harmful ingredients.  
     ✧ **History**, Stores the history of skincare ingredients or products that have been scanned by previous users. History will be saved if you have **entered the scan name and click Done** on the keyboard.  
-
+</ul>
 • **Dependencies**
   

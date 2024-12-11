@@ -22,5 +22,13 @@ The source code for the Scancare Android app, written in Kotlin, was created to 
 
 <ul>
     <li><B>Dependencies</B></li>
+    <ul>
+        <li>https://developer.android.com/jetpack/androidx/releases/lifecycle</li>
+        <li>https://developer.android.com/kotlin/coroutines</li>
+        <li>https://square.github.io/retrofit/</li>
+        <li>https://square.github.io/okhttp/</li>
+        <li>https://developer.android.com/topic/libraries/architecture/datastore</li>
+        <li>https://github.com/bumptech/glide</li>
+    </ul>
 </ul>
   

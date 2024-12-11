@@ -23,13 +23,7 @@ android {
     }
 
     buildTypes {
-//        debug {
-//            buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
-//            buildConfigField("String", "BASE_URL_OCR", "\"https://api-scancare-model-ml2-173910592123.asia-southeast2.run.app/\"")
-//        }
         release {
-//            buildConfigField("String", "BASE_URL", "\"https://api-scancare1-173910592123.asia-southeast2.run.app/\"")
-//            buildConfigField("String", "BASE_URL_OCR", "\"https://api-scancare-model-ml2-173910592123.asia-southeast2.run.app/\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

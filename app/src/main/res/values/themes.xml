@@ -28,10 +28,4 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
     </style>
-
-
-<!--    <style name="ShapeAppearanceOverlay.App.Image.Rounded" parent="">-->
-<!--        <item name="cornerFamily">rounded</item>-->
-<!--        <item name="cornerSize">16dp</item> &lt;!&ndash; Ukuran sudut &ndash;&gt;-->
-<!--    </style>-->
 </resources>

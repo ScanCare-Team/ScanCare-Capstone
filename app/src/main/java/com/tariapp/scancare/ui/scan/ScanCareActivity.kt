@@ -185,9 +185,9 @@ class ScanCareActivity : AppCompatActivity() {
             visibility = View.VISIBLE // Tampilkan tombol status
 
             val status = if (analisisBahan.isNotEmpty())
-                "Bahan Berbahaya Ditemukan"
+                context.getString(R.string.bahan_berbahaya_ditemukan)
             else
-                "Bahan Berbahaya tidak ditemukan"
+                context.getString(R.string.bahan_berbahaya_tidak_ditemukan)
 
             Log.d("HazardStatus", "Status: $status") // Logging status untuk debugging
 

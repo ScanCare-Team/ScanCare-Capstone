@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.tariapp.scancare.ui.history.HistoryFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_history"
         tools:layout="@layout/fragment_history" >
         <action
             android:id="@+id/action_navigation_history_to_navigation_bookmark"
@@ -40,7 +40,7 @@
     <fragment
         android:id="@+id/navigation_bookmark"
         android:name="com.tariapp.scancare.ui.bookmark.BookmarkFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_bookmark"
         tools:layout="@layout/fragment_bookmark" >
         <action
             android:id="@+id/action_navigation_bookmark_to_navigation_profile"

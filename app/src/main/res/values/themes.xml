@@ -26,6 +26,7 @@
         <item name="colorOnSecondary">@color/white </item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
     </style>
 
 

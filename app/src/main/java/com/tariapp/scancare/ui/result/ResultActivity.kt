@@ -93,7 +93,7 @@ class ResultActivity : AppCompatActivity() {
     private fun displayStatus(status: String) {
         binding.apply {
             statusBahan.text = status
-            if (status == "Bahan Berbahaya Ditemukan") {
+            if (status == getString(R.string.bahan_berbahaya_ditemukan)) {
                 statusBahan.setTextColor(getColor(R.color.red))
                 statusBahan.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_warning, 0, 0, 0)
             } else {

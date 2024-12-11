@@ -54,7 +54,7 @@ class detailActivity : AppCompatActivity() {
             statusBahan.text = status
 
             // Set icon based on status
-            val iconResId = if (status == "Bahan Berbahaya Ditemukan") {
+            val iconResId = if (status == getString(R.string.bahan_berbahaya_ditemukan)) {
                 R.drawable.ic_warning // Icon for hazardous materials found
             } else {
                 R.drawable.ic_check // Icon for safe
@@ -67,7 +67,7 @@ class detailActivity : AppCompatActivity() {
             }
 
             // Show data based on status
-            if (status == "Bahan Berbahaya Ditemukan") {
+            if (status == getString(R.string.bahan_berbahaya_ditemukan)) {
                 // Show analysis and hazardous materials
                 tvAnalisis.visibility = View.VISIBLE
                 hasilAnalisis.visibility = View.VISIBLE

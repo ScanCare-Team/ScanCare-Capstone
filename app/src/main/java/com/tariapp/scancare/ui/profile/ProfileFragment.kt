@@ -4,6 +4,7 @@ package com.tariapp.scancare.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -93,6 +94,9 @@ class ProfileFragment : Fragment() {
             btnAboutUs.setOnClickListener {
                 val intent = Intent(activity, AboutUsActivity::class.java)
                 startActivity(intent)
+            }
+            btnLanguage.setOnClickListener {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
             btnLogout.setOnClickListener {
                 viewModel.logout()

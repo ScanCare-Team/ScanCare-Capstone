@@ -23,12 +23,12 @@ The source code for the Scancare Android app, written in Kotlin, was created to 
 <ul>
     <li><B>Dependencies</B></li>
     <ul>
-        <li>[Lifecycle & Live Data](https://developer.android.com/jetpack/androidx/releases/lifecycle)</li>
-        <li>[kotlinx-coroutines](https://developer.android.com/kotlin/coroutines)</li>
-        <li>[Retrofit 2](https://square.github.io/retrofit/)</li>
-        <li>[Ok Http 3](https://square.github.io/okhttp/)</li>
-        <li>[Data Store](https://developer.android.com/topic/libraries/architecture/datastore)</li>
-        <li>[Glide](https://github.com/bumptech/glide)</li>
+        <li><a href="https://developer.android.com/jetpack/androidx/releases/lifecycle" target="_blank">Lifecycle & Livedata</a></li>
+        <li><a href="https://developer.android.com/kotlin/coroutines" target="_blank">Kotlinx-coroutines</a></li>
+        <li><a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a></li>
+        <li><a href="https://square.github.io/okhttp/" target="_blank">Ok Http 3</a></li>
+        <li><a href="https://developer.android.com/topic/libraries/architecture/datastore" target="_blank">Data Store</a></li>
+        <li<a href="https://github.com/bumptech/glide" target="_blank">Data Store</a></li>
     </ul>
 </ul>
   
